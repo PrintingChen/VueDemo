@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>component-3 组件</title>
+    <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+       <!--<stay></stay>-->
+       <Panda :here="content"></Panda>
+    </div>
+    <script>
+        // Vue.component('stay', {
+        //     template: `<h2 style="color: red;">{{content}}</h2>`,
+        //     data: function(){
+        //         return{
+        //             content: '我是全局stay组件'
+        //         }
+        //     }
+        // });
+
+        var SubComponent = {
+            template: `<h4>我是嵌套的子组件哦！！！</h4>`
+        }
+
+        var PandaComponent = {
+            template: `
+               <div>
+                    <h3>{{msg}} {{here}} 的宝宝</h3>
+                    <son></son>
+                </div>
+            `,
+            data: function(){
+                return {msg: '我是局部的Panda,我来自'}
+            },
+            props: ['here'],
+            components: {
+                "son": SubComponent
+            }
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                content: 'Sichuan'
+            },
+            methods: {
+              
+            },
+            components: {
+                'Panda': PandaComponent
+            }
+        });
+    </script>
+</body>
+</html>
