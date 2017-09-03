@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-on</title>
+	<script src="../assets/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h2>总得分：{{count}}</h2>
+		<button @click="jiafen">加分</button>
+		<button @click="jianfen">减分</button><br><br>
+		<input type="text" @keyup.13="onEnter" v-model="inpVal">
+	</div>
+
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				count: 0,
+				inpVal: ''
+			},
+			methods: {
+				jiafen: function(){
+					this.count += 1;
+				},
+				jianfen: function(){
+					this.count -= 1;
+				},
+				onEnter: function(){
+					this.count += parseInt(this.inpVal);
+					this.inpVal = '';
+				}
+			}
+		});
+	</script>
+</body>
+</html>
