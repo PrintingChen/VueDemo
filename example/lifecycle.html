@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>lifecycle</title>
+    <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{count}}
+        <p><button @click="add">Add</button></p>
+    </div>
+    <p><button onclick="app.$destroy()">Button</button></p>
+    <script>
+        var outData = {
+            count: 0,
+        }
+        var app = new Vue({
+            el: '#app',
+            data: outData,
+            methods: {
+                add: function () {
+                    this.count++;
+                },
+            },
+            beforeCreate: function () {
+                console.log('1.beforeCreate')
+            },
+            created: function () {
+                console.log('2.created')
+            },
+            beforeMount: function () {
+                console.log('3.beforeMount')
+            },
+            mounted: function () {
+                console.log('4.mounted')
+            },
+            beforeUpdate: function () {
+                console.log('5.beforeUpdate')
+            },
+            updated: function () {
+                console.log('6.updated')
+            },
+            activated: function () {
+                console.log('7.activated');
+            },
+            deactivated: function () {
+                console.log('8.deactivated');
+            },
+            beforeDestroy: function () {
+                console.log('9.beforeDestroy')
+            },
+            destroyed: function () {
+                console.log('10.destroyed')
+            }
+        });
+    </script>
+</body>
+
+</html>

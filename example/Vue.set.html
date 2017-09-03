@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.set</title>
+	<script src="../assets/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		{{count}}
+		<ul>
+			<li v-for="item in arr">{{item}}</li>
+		</ul>
+	</div>
+	<p><button onclick="change()">Button</button></p>
+	<script>
+		function change(){
+			// outData.count++;
+			// app.count++;
+			// Vue.set(outData, 'count', 2); //修改属性值
+
+			//如果没有调用上面的三种方式就使用这样的方法改变数组的某个值，是不起效果的，监测不到变化，所以这就是Vue.set()存在的意义
+			// app.arr[1] = 'ddddd'; 
+			
+			Vue.set(app.arr, 1, 'dddddddddddd'); 
+		}
+		var outData = {
+			count: 0,
+			arr: ['aaa', 'bbb', 'ccc']
+		}
+		var app = new Vue({
+			el: '#app',
+			data: outData,
+			methods: {
+				
+			}
+		});
+	</script>
+</body>
+</html>

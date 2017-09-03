@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.extend</title>
+	<script src="../assets/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<author></author>
+		<div id="extend"></div>
+	</div>
+	<script>
+		var Author = Vue.extend({
+			template: "<a :href='url'>{{msg}}</a>",
+			data: function(){
+				return{
+					url: 'http://www.baidu.com',
+					msg: 'Baidu'
+				}
+			}
+		});
+		new Author().$mount('author')
+		new Author().$mount('#extend')
+
+
+		var app = new Vue({
+			el: '#app',
+			data: {
+				
+			},
+			methods: {
+				
+			}
+		});
+	</script>
+</body>
+</html>

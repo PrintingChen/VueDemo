@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>component-1 组件</title>
+    <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+       <stay></stay>
+       <layout></layout>
+    </div>
+    <script>
+        Vue.component('stay', {
+            template: `<h2 style="color: red;">{{content}}</h2>`,
+            data: function(){
+                return{
+                    content: '我是全局stay组件'
+                }
+            }
+        });
+        var app = new Vue({
+            el: '#app',
+            data: {
+               
+            },
+            methods: {
+              
+            },
+            components: {
+                'layout': {
+                    template: `<h3 style="color: green;">{{content}}</h3>`,
+                    data: function(){
+                        return{
+                            content: '我是局部的layout组件'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

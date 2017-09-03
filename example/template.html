@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>创建template的三种方式</title>
+    <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--<template id="tpl2">
+            <h2>这是template标签定义的模板</h2>
+        </template>-->
+
+        <script type="x-template" id="tpl3">
+            <h2>这是script标签内定义的模板</h2>
+        </script>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+               
+            },
+            methods: {
+              
+            },
+
+            // template: `
+            //         <h2>这是data属性内定义的模板</h2>
+            //     `
+
+            // template: '#tpl2'
+
+            template: '#tpl3'
+        });
+    </script>
+</body>
+</html>

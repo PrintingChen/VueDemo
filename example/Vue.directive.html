@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.directive</title>
+	<script src="../assets/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p v-stay="fontSize">{{count}}</p>
+		<button @click="add">Add</button>
+	</div>
+	<button onclick="unbind()">unbind</button>
+	<script>
+		function unbind(){
+			app.$destroy();
+		}
+		// Vue.directive('stay', function(el, binding){
+		// 	console.log(el)
+		// 	console.log(binding)
+		// 	el.style = 'font-size:'+binding.value			
+		// });
+		Vue.directive('stay', {
+			bind: function(el, binding){
+				console.log('bind')
+				el.style = 'font-size:'+binding.value;
+			},
+			inserted: function(){
+				console.log('inserted')
+			},
+			update: function(){
+				console.log('update')
+			},
+			componentUpdated: function(){
+				console.log('componentUpdated')
+			},
+			unbind: function (){
+				console.log('unbind')
+			}
+		});
+		var app = new Vue({
+			el: '#app',
+			data: {
+				count: 0,
+				fontSize: '24px'
+			},
+			methods: {
+				add: function(){
+					this.count += 1;
+				}
+			}
+		});
+		console.log(Vue.directive('stay'))
+	</script>
+</body>
+</html>
