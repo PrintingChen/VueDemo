@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实例与内置组件-2</title>
+    <script src="../assets/vue.js"></script>
+    <script src="../assets/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{count}}</p>
+    </div>
+    <button onclick="Add()">Add</button>
+    <button onclick="Reduce()">Reduce</button>
+    <button onclick="Off()">Off</button>
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            },
+            methods: {
+            
+            }
+        })
+
+        app.$on('add', function(msg){
+            this.count += 2
+            console.log('调用了在构造器外部添加的add事件')
+        })
+
+        function Add(){
+            app.$emit('add')
+        }
+
+        // $once执行一次的事件
+        app.$once('reduce', function(){
+            this.count--
+            console.log('只执行了一次reduce事件')
+        })
+
+        function Reduce(){
+            app.$emit('reduce')
+        }
+
+        // $off关闭事件
+        function Off(){
+            app.$off('add')
+        }
+
+    </script>
+</body>
+</html>

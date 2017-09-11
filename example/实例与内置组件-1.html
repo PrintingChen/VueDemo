@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Early Examples Demo</title>
+    <script src="../assets/vue.js"></script>
+    <script src="../assets/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Stay'
+            },
+            mounted: function(){
+                $('#app').html('我是引入的jQuery!')
+            },
+            methods: {
+                add: function(){
+                    console.log('实例调用了add方法')
+                }
+            }
+        })
+
+        // 实例调用
+        app.add()
+
+        console.log(app)
+
+    </script>
+</body>
+</html>

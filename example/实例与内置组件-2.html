@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实例与内置组件-2</title>
+    <script src="../assets/vue.js"></script>
+    <script src="../assets/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <button onclick="destroy()">destroy</button>
+    <button onclick="forceUpdate()">forceUpdate</button>
+    <button onclick="nextTick()">nextTick</button>
+    <script>
+        var stay = Vue.extend({
+            template: `<p>{{msg}}</p>`,
+            data: function(){
+                return {
+                    msg: 'Hello I am Stay'
+                }
+            },
+            destroyed: function(){
+                console.log('调用了destroyed方法')
+            },
+            updated: function(){
+                console.log('调用了updated方法')
+            }
+        })
+
+        var vm = new stay().$mount('#app')
+        console.log(vm)
+
+        // $destroy() 卸载方法
+        function destroy(){
+            vm.$destroy()
+        }
+
+        // $forceUpdate() 更新方法
+        function forceUpdate(){
+            vm.$forceUpdate()
+        }
+
+        // $nextTick() 数据修改方法
+        function nextTick(){
+            vm.msg="update message info ";
+            vm.$nextTick(function(){
+                console.log('msg更新完后我被调用了');
+            })
+        }
+
+    </script>
+</body>
+</html>
