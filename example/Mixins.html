@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mixins 混入选项操作</title>
+    <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+       <p>{{count}}</p>
+       <p><button @click="add">add</button></p>
+    </div>
+    <script>
+        Vue.mixin({ //执行的优先级最高
+            updated: function(){
+                console.log('我是全局被混入的updated方法')
+            }
+        })
+        // 从执行的先后顺序来说，都是混入的先执行，然后构造器里的再执行，
+        //需要注意的是，这并不是方法的覆盖，而是被执行了两边。
+        var addLog = {
+            updated: function(){
+                console.log('我是混入的updated方法', 'mixins数据发生变化，变化成了'+this.count)
+            }
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+               count: 0
+            },
+            methods: {
+                add: function(){
+                    this.count++
+                }
+            },
+            mixins: [addLog], //混入
+            updated: function(){
+                console.log('我是构造器里面的updated方法')
+            }
+        })
+    </script>
+</body>
+</html>

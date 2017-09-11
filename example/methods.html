@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Methods Option  方法选项</title>
+    <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <p>{{count}}</p>
+        <p><button @click="add(1)">Add</button></p>
+        <child @click.native="add(2)"></child>
+    </div>
+
+    <p><button onclick="app.add(3)">作用域外button</button></p>
+
+    <script>
+        // native  给组件绑定构造器里的原生事件
+        var childBtn = {
+            template: `<p><button>childBtn</button></p>`
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            },
+            methods: {
+                add: function(num){
+                    this.count += num
+                }
+            },
+            components: {
+                'child': childBtn
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>component-4 组件</title>
+    <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <component :is="who"></component>
+        <p><button @click="changeComponent">changeComponent</button></p>
+    </div>
+    <script>
+       
+        var componentA = {
+            template: `<h2>I am componentA</h2>`
+        }
+        var componentB = {
+            template: `<h2>I am componentB</h2>`
+        }
+        var componentC = {
+            template: `<h2>I am componentC</h2>`
+        }
+        var app = new Vue({
+            el: '#app',   
+            data: {
+                who: 'componentA'
+            },
+            methods:{
+                changeComponent: function(){
+                    if(this.who == 'componentA'){
+                        this.who = 'componentB';
+                    }else if(this.who == 'componentB'){
+                        this.who = 'componentC';
+                    }else{
+                        this.who = 'componentA';
+                    }
+                }
+            },
+            components: {
+                'componentA': componentA,
+                'componentB': componentB,
+                'componentC': componentC
+            }
+        });
+    </script>
+</body>
+</html>
