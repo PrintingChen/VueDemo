@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>内置组件 -slot</title>
+    <script src="../assets/vue.js"></script>
+    <script src="../assets/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <stay>
+            <span slot="blogUrl">{{stayData.blogUrl}}</span>
+            <span slot="netName">{{stayData.netName}}</span>
+            <span slot="skill">{{stayData.skill}}</span>
+        </stay>
+    </div>
+
+    <template id="stay">
+        <div>
+            <p>博客地址：<slot name="blogUrl"></slot></p>
+            <p>网名：<slot name="netName"></slot></p>
+            <p>技术类型：<slot name="skill"></slot></p>
+        </div>
+    </template>
+
+    <script>
+        var stay = {
+            template: '#stay'
+        }
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                stayData: {
+                    blogUrl: 'http://jspang.com',
+                    netName: 'Stay',
+                    skill: 'Web前端'
+                }
+            },
+            methods: {
+
+            },
+            components: {
+                'stay': stay
+            }
+        })
+
+    </script>
+</body>
+</html>
