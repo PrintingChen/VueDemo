@@ -1,0 +1,1 @@
+document.write('<h1>使用uglify-js 压缩打包JS代码</h1>')
